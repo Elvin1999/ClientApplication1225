@@ -33,12 +33,33 @@ namespace ClientApplication
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ConnectToServer();
-            //RequestLoop();
+            RequestLoop();
         }
 
         private void RequestLoop()
         {
-            throw new NotImplementedException();
+            var receiver = Task.Run(() =>
+            {
+                while (true)
+                {
+                    ReceiveResponse();
+                }
+            });
+        }
+
+        private void ReceiveResponse()
+        {
+            var buffer = new byte[10000];
+            int received = ClientSocket.Receive(buffer, SocketFlags.None);
+            if (received == 0) return;
+            var data = new byte[received];
+            Array.Copy(buffer, data, received);
+            string text=Encoding.ASCII.GetString(data);
+
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                ResponseTxtb.Text = text;
+            });
         }
 
         private void ConnectToServer()
