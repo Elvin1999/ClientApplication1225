@@ -124,7 +124,7 @@ namespace ClientApplication
                 var splitResult = result.Split('\\');
                 if (splitResult.Length > 2)
                 {
-                    textbox.Width = 200;
+                    textbox.Width = 800;
                     textbox.Height = 60;
                     textbox.Text = "*" + splitResult[2];
                     textbox.FontSize = 22;
@@ -132,7 +132,7 @@ namespace ClientApplication
                     if (paramsStackPanel.Children.Count > 3)
                     {
                         paramsStackPanel.Children.RemoveAt(3);
-                        //paramsStackPanel.Children.RemoveAt(3);
+                        paramsStackPanel.Children.RemoveAt(3);
                     }
 
                     paramsStackPanel.Children.Add(textbox);
@@ -150,7 +150,7 @@ namespace ClientApplication
                     if (paramsStackPanel.Children.Count > 3)
                     {
                         paramsStackPanel.Children.RemoveAt(3);
-                        //paramsStackPanel.Children.RemoveAt(3);
+                        paramsStackPanel.Children.RemoveAt(3);
                     }
                     SendString(result);
                 }
